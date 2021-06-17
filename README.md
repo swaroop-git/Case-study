@@ -1,1 +1,1 @@
-
+the problem with the code is that i am able to connect with atlas but while pushing the data in collection, via postman, it shows "error": "Operation `merchants.insertOne()` buffering timed out after 10000ms" . And because of that i am not able to see my database and collection in atlas .  But while i perform the same operation on local it runs smoothly without any error.
