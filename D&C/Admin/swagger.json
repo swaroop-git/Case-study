@@ -1,0 +1,148 @@
+ {
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Admin CRUD",
+      "description": " Application API",
+      "license": {
+        "name": "D&C",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Admin",
+        "description": "API for admin in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    
+      "paths": {
+        "/a/admin": {
+          "get": {
+            "tags": ["Admin"],
+            "summary": "Get all admins in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+                
+              }
+            }
+          },
+          
+          "post": {
+            "tags": ["Admin"],
+            "summary": "Add admin to db",
+            "description": "Create new admin in system",
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "admin that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New admin is created",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+              }
+            }
+          }
+        
+           
+        },
+        "/a/admin/{id}": {
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of admin that we want to find",
+              "type": "string"
+            }
+          ],
+          "get": {
+            "tags": ["Admin"],
+            "summary": "Get admin by id in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+                
+              }
+            }
+          },
+          "put": {
+            "summary": "Update admin with give ID",
+            "tags": ["Admin"],
+            "parameters": [
+              {
+                "name": "admin",
+                "in": "body",
+                "description": "Admin with new values of properties",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Admin is updated",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete admin with given ID",
+            "tags": ["Admin"],
+            "responses": {
+              "200": {
+                "description": "Admin is deleted",
+                "schema": {
+                  "$ref": "#/definitions/admin"
+                }
+              }
+            }
+          }
+        }
+      },
+      "definitions": {
+        "admin": {
+          "required": ["name", "_id"],
+          "properties": {
+            "_id": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "name": {
+              "type": "string"
+            },
+            "email_address": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "number"
+            }
+          }
+        }
+      }
+
+    }
+  
