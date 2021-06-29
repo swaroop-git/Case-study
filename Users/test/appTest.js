@@ -120,9 +120,9 @@ describe("DELETE Request.", function(){
         const id = "567";
         let res = await chai
         .request(server.app)
-        .delete('/u/user/' + id)
+        .delete('/u/users/' + id)
 
-    //expect(res.status).to.equal(404);
+    expect(res.status).to.equal(404);
     expect(res).to.be.an('object');
         });
     });
