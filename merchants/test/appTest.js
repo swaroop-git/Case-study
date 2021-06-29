@@ -69,7 +69,7 @@ describe("GET Request", function () {
  describe("PUT Request.", function(){
      describe("Updating a user in the users collection of the DealsandCouponsUsers Database.",function(){
          it("Successful updation should return status code equal to 200 and the updated user.", async function(){
-             const id = "60cf1438a1091237dc65346e";
+             const id = "60cf1ad320fa1b2f1c3e7aa6";
              let res = await chai
          	.request(server.app)
          	.put('/m/merchant/' + id).send({
@@ -83,7 +83,7 @@ describe("GET Request", function () {
      res.body.should.have.property('_id');
      res.body.should.have.property('name').eq("ali-baba");
      res.body.should.have.property('product').eq("retailer");
-     res.body.should.have.property('price').eq(20);
+     res.body.should.have.property('price').eq(50);
       });
       it("If the id doesn't exists.", async function(){
          const id = "360";
