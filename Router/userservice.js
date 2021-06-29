@@ -13,7 +13,7 @@ router.get('/user', (req, res) => {
         res.send(resp.data)
     })
 })
- 
+ //get by id operation
 router.get('/user/:id', (req, res) => {
     console.log(req.path);
     api.get(req.path);
