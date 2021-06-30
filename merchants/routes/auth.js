@@ -160,7 +160,7 @@ router.post('/login',async(req,res)=>{
 
     //checking if the email is exist
     const merchant = await Merchant.findOne({email:req.body.email});
-    if(!user)return res.status(400).send('Email or password is wrong');
+    if(!merchant)return res.status(400).send('Email or password is wrong');
     
     //checking password
     const validPass = await bcrypt.compare(req.body.password,merchant.password);
