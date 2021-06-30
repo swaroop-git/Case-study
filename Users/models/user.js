@@ -5,17 +5,29 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     name: {
         type:String,
-        required: [true,'name field eis required']
+        required: [true,'name field is required'],
+        max:233,
+        min:6
     },
-    email_address:{
+    email:{
         type:String,
+        required:true,
+        max:255,
+        min:6
     },
     phone:{
         type:Number,
     },
     password:{
-        type:String
+        type:String,
+        required:true,
+        max:1023,
+        min:6
     },
+    date:{
+        type: Date,
+        default:Date.now
+    }
      
 });
 
