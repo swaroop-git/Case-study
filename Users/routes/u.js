@@ -1,57 +1,9 @@
-// const express = require('express');
-// const router = express.Router();
-// const User = require('../models/user');
-
-
-
-// //get a list of merchants from the db
-// router.get('/user', function(req,res){
-//     res.send("hello world!");
-// });
-
-// //add a new Users to db
-
-// router.post('/user', function(req,res,next){
-//     //console.log(req.body);
-//     User.create(req.body).then(function(user){
-//       res.send(user);
-//     }).catch(next);
-    
-    
-//     res.send({
-//         type:'POST'
-  
-//     });
-    
-    
-// });
-
-
-
-// //update a users in db
-// router.put('/user/:id', function(req,res){
-//     res.send({type:'PUT'});
-// });
-
-// //delete a users from db
-// router.delete('/user/:id', function(req,res){
-//     User.findByIdAndRemove({_id:req.params.id}).then(function(user){
-//         res.send(user);
-//     });
-//     res.send({type:'DELETE'});
-// });
-
-// module.exports = router;
-
-
-
-
-
-
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const axios = require('axios');
 
+const deal = "http://localhost:2000/d";
 
 
 /**
@@ -116,6 +68,14 @@ router.get('/user', function(req,res){
     })
 });
 
+
+//Deals connection
+router.get('/deals',(req,res)=>{
+    axios.get(deal+'/deals').then((response)=>{
+        res.send(response.data);
+    });
+
+});
 
 
 /**

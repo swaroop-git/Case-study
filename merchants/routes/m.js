@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Merchant = require('../models/merchant');
+const axios = require('axios');
+
+const deal = "http://localhost:2000/d";
 
 
 
@@ -71,6 +74,15 @@ router.get('/merchant', function(req,res){
 });
 
 
+//Deals connection
+router.get('/deals',(req,res)=>{
+    axios.get(deal+'/deals').then((response)=>{
+        res.send(response.data);
+    });
+
+});
+
+
 
 /**
  * @openapi
@@ -111,6 +123,14 @@ router.post('/merchant', function(req,res,next){
     });
     */
     
+});
+
+//Deals connection
+router.post('/deals',(req,res)=>{
+    axios.post(deal+'/deals',req.body).then((response)=>{
+        res.send(response.data);
+    });
+
 });
 
 
@@ -171,6 +191,15 @@ router.put('/merchant/:id', function(req,res){
 });
 
 
+//Deals connection
+router.put('/deals/:id',(req,res)=>{
+    axios.put(deal+'/deals/'+ req.params.id,req.body).then((response)=>{
+        res.send(response.data);
+    });
+    // res.send(req.params.id);
+
+});
+
 /**
  * @openapi
  * /m/merchant/{id}:
@@ -203,5 +232,16 @@ router.delete('/merchant/:id', function(req,res){
     });
     //res.send("merchant deleted");
 });
+
+//Deals connection
+router.delete('/deals/:id',(req,res)=>{
+    axios.delete(deal+'/deals/'+ req.params.id,req.body).then((response)=>{
+        res.send(response.data);
+    });
+    // res.send(req.params.id);
+
+});
+
+
 
 module.exports = router;
