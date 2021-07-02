@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const axios = require('axios');
+const verify = require('../middleware/verify');
+const jwt = require('jsonwebtoken');
 
 const deal = "http://localhost:2000/d";
 
@@ -58,14 +60,30 @@ const deal = "http://localhost:2000/d";
 
 
 
-router.get('/user', function(req,res){
-    User.find().then((user) =>{
-        res.json(user)
-    }).catch((err) => {
-        if(err){
-            throw err
-        }
-    })
+router.get('/user',verify, function(req,res){
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            User.find().then((user) =>{
+                res.json(user)
+            }).catch((err) => {
+                if(err){
+                    throw err
+                }
+            })
+        }    
+
+           
+        
+    });
+    // User.find().then((user) =>{
+    //     res.json(user)
+    // }).catch((err) => {
+    //     if(err){
+    //         throw err
+    //     }
+    // })
 });
 
 

@@ -68,6 +68,8 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
+const verify = require('../middleware/verify');
+ 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -92,11 +94,11 @@ router.post('/signup', function (req, res) {
             user.save().then(function (result) {
                 console.log(result);
                 res.status(200).json({
-                    success: 'New admin has been created..'
+                    success: 'New user has been created..'
                 });
             }).catch(error => {
                 res.status(500).json({
-                    error: err
+                    error: error
                 });
             });
         }
@@ -139,38 +141,22 @@ router.post('/login', function (req, res) {
         });
 });
 
-router.post('/posts', verifyToken, (req, res) => {
+router.get('/logout', function(req, res) {
+    res.send("Logged out successfully..")
+});
+
+router.post('/posts', verify, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.sendStatus(403);
         } else {
             res.json({
-                message: 'Admin successfully logged in.....',
+                message: ' successfully logged in.....',
                 authData
             });
         }
     });
 });
 
-// Verify Token
-function verifyToken(req, res, next) {
-    // Get auth header value
-    const bearerHeader = req.headers['authorization'];
-    // Check if bearer is undefined
-    if (typeof bearerHeader !== 'undefined') {
-        // Split at the space
-        const bearer = bearerHeader.split(' ');
-        // Get token from array
-        const bearerToken = bearer[1];
-        // Set the token
-        req.token = bearerToken;
-        // Next middleware
-        next();
-    } else {
-        // Forbidden
-        res.sendStatus(403);
-    }
-
-}
 
 module.exports = router;
