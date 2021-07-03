@@ -24,7 +24,7 @@ router.post('/signup', function (req, res) {
         else {
             const user = new adminModel({
                 name: req.body.name,
-                email_address: req.body.email_address,
+                email: req.body.email,
                 password: hash,
             });
             user.save().then(function (result) {
@@ -43,7 +43,7 @@ router.post('/signup', function (req, res) {
 
 router.post('/login', function (req, res) {
 
-    adminModel.findOne({ email_address: req.body.email_address })
+    adminModel.findOne({ email: req.body.email })
         .exec()
         .then(function (admin) {
             bcrypt.compare(req.body.password, admin.password, function (err, result) {
@@ -54,7 +54,7 @@ router.post('/login', function (req, res) {
                 }
                 if (result) {
                     const JWTToken = jwt.sign({
-                        email_address: admin.email_address,
+                        email: admin.email,
                     },
                         'secretkey',
                         {
@@ -75,6 +75,10 @@ router.post('/login', function (req, res) {
                 failed: "This Email-ID does not exist."
             });
         });
+});
+
+router.get('/logout', function(req, res) {
+    res.send("Logged out successfully..")
 });
 
 router.post('/posts', verifyToken, (req, res) => {

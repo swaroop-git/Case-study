@@ -7,7 +7,7 @@ const AdminSchema = new Schema({
         type:String,
         required: [true,'name field is required']
     },
-    email_address:{
+    email:{
         type:String
     },
     password:{

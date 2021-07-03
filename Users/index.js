@@ -142,7 +142,7 @@ app.use(function(err, req, res, next){
 
 app.listen(process.env.port||5000, function(){
 
-    console.log('now listening for request');
+    console.log('now listening for request 5000');
     
 }); 
 
