@@ -125,7 +125,7 @@
       },
       "definitions": {
         "admin": {
-          "required": ["name", "_id"],
+          "required": ["name"],
           "properties": {
             "_id": {
               "type": "string",
@@ -134,7 +134,7 @@
             "name": {
               "type": "string"
             },
-            "email_address": {
+            "email": {
               "type": "string"
             },
             "phone": {
