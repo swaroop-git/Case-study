@@ -127,15 +127,14 @@
         "admin": {
           "required": ["name"],
           "properties": {
-            "_id": {
-              "type": "string",
-              "uniqueItems": true
-            },
             "name": {
               "type": "string"
             },
             "email": {
               "type": "string"
+            },
+            "password":{
+              "type":"string"
             },
             "phone": {
               "type": "number"

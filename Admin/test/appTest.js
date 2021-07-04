@@ -1,13 +1,4 @@
-// const expect = require("chai").expect;
 const request = require("supertest");
-// const prompt = require("prompt-sync")();
-// const { helloWorld } = require("../testFunctions");
-// const testFunctions = require("../testFunctions");
-
-// helloWorld = testFunctions.helloWorld();
-// var a = prompt("Enter number 1: ");
-// var b = prompt("Enter number 2: ");
-// multiply = testFunctions.multiply(Number(a),Number(b));
 const chai = require("chai")
 const chaiHttp = require("chai-http")
 const expect = chai.expect
@@ -41,13 +32,13 @@ describe("GET Request", function () {
 });
 
  describe("POST Request.", function(){
-    describe("Adding a user into the users collection of the DealsandCouponsUsers Database.",function(){
+    describe("Adding a admmin into the admins collection of the Admin Database.",function(){
         it("Successful insertion should return status code equal to 200.", async function(){
              let res = await chai
          	.request(server.app)
          	.post('/a/admin').send({
                  name: "swaroop",
-                 email_address: "swaroop@gmail.com",
+                 email: "swaroop@gmail.com",
                  phone: "1234"
             })
 
@@ -55,7 +46,7 @@ describe("GET Request", function () {
      res.body.should.be.a('object');
      res.body.should.have.property('_id');
      res.body.should.have.property('name').eq("swaroop");
-     res.body.should.have.property('email_address').eq("swaroop@gmail.com");
+     res.body.should.have.property('email').eq("swaroop@gmail.com");
      res.body.should.have.property('phone').eq("1234");
       });
       afterEach(async () => {
@@ -67,7 +58,7 @@ describe("GET Request", function () {
  describe("PUT Request.", function(){
      describe("Updating a admin in the admins collection of the D&C Users Database.",function(){
          it("Successful updation should return status code equal to 200 and the updated admin.", async function(){
-             const id = "60d393d0ca0ced24b8094d9c";
+             const id = "60e1802e3715db6084e17533";
              let res = await chai
          	.request(server.app)
          	.put('/a/admin/' + id).send({
@@ -76,11 +67,11 @@ describe("GET Request", function () {
      })
 
      expect(res.status).to.equal(200);
-     expect(res).to.be.an('object');
-     //res.body.should.be.a('object');
+    // expect(res).to.be.an('object');
+     res.body.should.be.a('object');
      res.body.should.have.property('_id');
      res.body.should.have.property('name').eq("talif");
-     res.body.should.have.property('email_address').eq("ninja@gmail.com");
+     res.body.should.have.property('email').eq("ram@gmail.com");
      res.body.should.have.property('phone').eq("54321");
       });
       it("If the id doesn't exists.", async function(){
