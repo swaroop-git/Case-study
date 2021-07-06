@@ -82,6 +82,40 @@ router.get('/deals',(req,res)=>{
 
 });
 
+ 
+/**
+ * @openapi
+ * /m/merchant/{id}:
+ *      get:
+ *          summary: Returns merchant with id
+ *          tags: [Merchant]
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *          responses:
+ *              200:
+ *                  description: The list of the merchants
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: string
+ *                              items:
+ *                                  $ref: '#/components/schemas/Merchant'
+ *    
+ */      
+
+ router.get('/merchant/:id', function(req,res){
+    Merchant.findById(req.params.id, (err,data) => {
+        if(err){
+        res.status(404).json({success: false, error: err});
+        }
+        else{
+        res.status(200).json(data);
+        }
+    })
+});
+
+
 
 
 /**
