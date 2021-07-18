@@ -6,7 +6,7 @@ chai.should();
 chai.use(chaiHttp)
 const server = require("../index");
 var app = request.agent(server.app);
-var dealsModel = require("../../Deals/models/deals&coupons");
+var dealsModel = require("../models/deals&coupons");
 
 
 describe("GET Request", function () {

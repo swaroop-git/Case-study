@@ -107,6 +107,7 @@ router.get('/admin/:id', function(req,res){
 
 //users connection
 router.get('/users',(req,res)=>{
+    //console.log("hello");
     axios.get(user+'/user').then((response)=>{
         res.send(response.data);
     });

@@ -30,7 +30,7 @@ const Deals = require('../models/deals&coupons');
 
 
 router.get('/deals', function(req,res){
-    Deals.find().then((deals) =>{
+    Deals.find(req.query).then((deals) =>{
         res.json(deals)
     }).catch((err) => {
         if(err){

@@ -104,8 +104,8 @@ describe("GET Request", function () {
 
 
 describe("DELETE Request.", function(){
-    describe("Deleting a user in the users collection of the DealsandCouponsUsers Database.",function(){
-        it("Successful deletion should delete a user and return status code equal to 200.", async function(){
+    describe("Deleting a merchant in the merchants collection of the D&C merchant Database.",function(){
+        it("Successful deletion should delete a merchant and return status code equal to 200.", async function(){
             const id = "60ced094b2384d2a9c6df1e1";
             let res = await chai
         	.request(server.app)

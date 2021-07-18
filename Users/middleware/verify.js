@@ -5,6 +5,7 @@ module.exports= function verifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
     // Check if bearer is undefined
     if (typeof bearerHeader !== 'undefined') {
+        console.log("hello world");
         // Split at the space
         const bearer = bearerHeader.split(' ');
         // Get token from array

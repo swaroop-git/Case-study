@@ -10,8 +10,8 @@ var adminModel = require("../../Admin/models/admin");
 
 
 describe("GET Request", function () {
-    describe("Getting all the admin from the admins collection of the D&C Users Database.",function(){
-    it("A successful get request should return status code equal to 200 and all users.", (done) => {
+    describe("Getting all the admin from the admins collection of the D&C Admin Database.",function(){
+    it("A successful get request should return status code equal to 200 and all admin.", (done) => {
       chai.request(server.app).get("/a/admin").end((err, res)=> {
           if (err) done(err);
           expect(res).to.have.status(200);
@@ -56,7 +56,7 @@ describe("GET Request", function () {
 });
 
  describe("PUT Request.", function(){
-     describe("Updating a admin in the admins collection of the D&C Users Database.",function(){
+     describe("Updating a admin in the admins collection of the D&C Admin Database.",function(){
          it("Successful updation should return status code equal to 200 and the updated admin.", async function(){
              const id = "60e1802e3715db6084e17533";
              let res = await chai
@@ -93,8 +93,8 @@ describe("GET Request", function () {
 
 
 describe("DELETE Request.", function(){
-    describe("Deleting a admin in the admins collection of the DealsandCouponsUsers Database.",function(){
-        it("Successful deletion should delete a user and return status code equal to 200.", async function(){
+    describe("Deleting a admin in the admins collection of the D&C Admin Database.",function(){
+        it("Successful deletion should delete a admin and return status code equal to 200.", async function(){
             const id = "60d33422565f4b22b01c426a";
             let res = await chai
         	.request(server.app)
